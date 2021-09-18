@@ -11,7 +11,9 @@ class GadgetsTableViewCell: UITableViewCell {
     
     
     @IBOutlet weak var gadgetImageView: UIImageView!
-    @IBOutlet weak var gadgetName: UILabel!
+    @IBOutlet weak var gadgetNameLabel: UILabel!
+    @IBOutlet weak var gadgetPriceLabel: UILabel!
+    @IBOutlet weak var ratingLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,8 +22,6 @@ class GadgetsTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }
