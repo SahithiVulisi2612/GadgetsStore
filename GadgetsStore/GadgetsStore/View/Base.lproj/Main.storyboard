@@ -12,7 +12,7 @@
         <scene sceneID="UJJ-g3-RmG">
             <objects>
                 <tableViewController id="m4j-71-K8d" customClass="HomePageViewController" customModule="GadgetsStore" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="x38-ww-FvG">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="x38-ww-FvG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -48,10 +48,22 @@
                                             <color key="textColor" systemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qx8-0R-9OK">
+                                            <rect key="frame" x="322" y="57.5" width="90" height="34.5"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                            <state key="normal" title="Add To Cart">
+                                                <color key="titleColor" red="0.039215686270000001" green="0.61176470589999998" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="addToCartButtonAction:" destination="AJm-Gg-pgf" eventType="touchUpInside" id="cVI-pE-r99"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailingMargin" secondItem="2b2-CM-fWY" secondAttribute="trailing" id="6wH-qj-Wmu"/>
+                                        <constraint firstItem="Qx8-0R-9OK" firstAttribute="top" secondItem="2b2-CM-fWY" secondAttribute="bottom" constant="5" id="98G-bj-N6N"/>
                                         <constraint firstAttribute="trailing" secondItem="X41-Tn-cM6" secondAttribute="trailing" constant="8" id="CHq-4v-Qgl"/>
+                                        <constraint firstAttribute="trailing" secondItem="Qx8-0R-9OK" secondAttribute="trailing" constant="2" id="EbU-po-pCM"/>
                                         <constraint firstItem="Hcc-Lq-duT" firstAttribute="leading" secondItem="hka-ei-MNf" secondAttribute="trailing" constant="15" id="Enj-iw-rkw"/>
                                         <constraint firstItem="X41-Tn-cM6" firstAttribute="top" secondItem="hka-ei-MNf" secondAttribute="top" id="IGd-Q6-gqn"/>
                                         <constraint firstItem="hka-ei-MNf" firstAttribute="leading" secondItem="J2u-s3-81r" secondAttribute="leading" constant="8" id="KJT-JW-igq"/>
@@ -62,10 +74,12 @@
                                         <constraint firstItem="X41-Tn-cM6" firstAttribute="leading" secondItem="hka-ei-MNf" secondAttribute="trailing" constant="8" id="df1-ud-COM"/>
                                         <constraint firstItem="2b2-CM-fWY" firstAttribute="top" secondItem="X41-Tn-cM6" secondAttribute="bottom" constant="10" id="iVc-5C-mG2"/>
                                         <constraint firstItem="2b2-CM-fWY" firstAttribute="leading" secondItem="hka-ei-MNf" secondAttribute="trailing" constant="15" id="lef-Oi-786"/>
+                                        <constraint firstAttribute="bottom" secondItem="Qx8-0R-9OK" secondAttribute="bottom" id="moK-ht-EV2"/>
                                         <constraint firstItem="hka-ei-MNf" firstAttribute="centerY" secondItem="J2u-s3-81r" secondAttribute="centerY" id="qnL-NO-MhP"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="addToCartButton" destination="Qx8-0R-9OK" id="5LA-R6-0Kb"/>
                                     <outlet property="gadgetImageView" destination="hka-ei-MNf" id="W16-vv-OHS"/>
                                     <outlet property="gadgetNameLabel" destination="X41-Tn-cM6" id="iHI-ws-0aS"/>
                                     <outlet property="gadgetPriceLabel" destination="2b2-CM-fWY" id="ozk-mk-iau"/>

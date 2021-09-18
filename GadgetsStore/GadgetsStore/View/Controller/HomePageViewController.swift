@@ -10,7 +10,8 @@ import UIKit
 class HomePageViewController: UITableViewController {
     let domainURL =  "https://my-json-server.typicode.com/nancymadan/assignment/db"
     var gadgetDataModel: GadgetDetails?
-    var gadgetsArray: [GadgetDetails]?
+    var gadgetslistWithHighPrice = [GadgetDetails]()
+    var gadgetslistWithLowPrice = [GadgetDetails]()
     var spinner = UIActivityIndicatorView(style: .large)
     
     override func viewDidLoad() {
@@ -36,11 +37,20 @@ class HomePageViewController: UITableViewController {
             guard let httpResponse = response as? HTTPURLResponse,
                   (200...299).contains(httpResponse.statusCode) else {
                 print("Error with the response, unexpected status code: \(String(describing: response))")
-              return
+                return
             }
             if let data = data {
                 let productsList:[String:[GadgetDetails]] = try! JSONDecoder().decode([String: [GadgetDetails]].self, from: data)
-                self.gadgetsArray = productsList["products"]
+                guard let list = productsList["products"] else {
+                    return
+                }
+                for ele in list {
+                    if (Int(ele.price) ?? 0) > 1000 {
+                        self.gadgetslistWithHighPrice.append(ele)
+                    } else {
+                        self.gadgetslistWithLowPrice.append(ele)
+                    }
+                }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                     self.spinner.stopAnimating()
@@ -55,26 +65,42 @@ class HomePageViewController: UITableViewController {
 
 extension HomePageViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let totalGadgets = self.gadgetsArray?.count else {
-            return 0
+        if section == 0 {
+            return self.gadgetslistWithLowPrice.count
+        }else {
+            return self.gadgetslistWithHighPrice.count
         }
-        return totalGadgets
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        let label = UILabel(frame: CGRect(x: 5, y: 5, width: self.view.frame.width, height: 50))
+        if section == 0 {
+            label.text = "Gadgets priced below 1000"
+        } else {
+            label.text = "Gadgets priced above 1000"
+        }
+        label.textColor = .black
+        view.backgroundColor = .lightGray
+        view.addSubview(label)
+        return view
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 60
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "gadgetCell", for: indexPath) as? GadgetsTableViewCell
-        cell?.gadgetNameLabel.text = gadgetsArray?[indexPath.row].name
-        if let price = gadgetsArray?[indexPath.row].price {
-            cell?.gadgetPriceLabel.text = "Price: \(String(describing: price))"
+        if indexPath.section == 0 {
+            cell?.configureCell(name: gadgetslistWithLowPrice[indexPath.row].name, price: gadgetslistWithLowPrice[indexPath.row].price, rating: gadgetslistWithLowPrice[indexPath.row].rating, image: getIamgeFromURl(with:gadgetslistWithLowPrice[indexPath.row].image_url))
+        } else {
+            cell?.configureCell(name: gadgetslistWithHighPrice[indexPath.row].name, price: gadgetslistWithHighPrice[indexPath.row].price, rating: gadgetslistWithHighPrice[indexPath.row].rating, image: getIamgeFromURl(with:gadgetslistWithHighPrice[indexPath.row].image_url))
         }
-        if let rating = gadgetsArray?[indexPath.row].rating {
-        cell?.ratingLabel.text = "Rating: \(String(describing: rating))"
-        }
-        cell?.gadgetImageView.image = getIamgeFromURl(with:gadgetsArray?[indexPath.row].image_url)
         return cell ?? UITableViewCell()
     }
     
@@ -89,21 +115,21 @@ extension HomePageViewController {
         guard let url = URL(string: urlString ?? "") else {
             return nil
         }
-            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-                if let err = error {
-                    print("Error with fetching images: \(err)")
-                    return
-                }
-                guard let httpResponse = response as? HTTPURLResponse,
-                      (200...299).contains(httpResponse.statusCode) else {
-                    print("Error with the response, unexpected status code: \(String(describing: response))")
-                  return
-                }
-                if let data = data {
-                        image = UIImage(data: data) ?? UIImage()
-                }
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let err = error {
+                print("Error with fetching images: \(err)")
+                return
             }
-            task.resume()
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200...299).contains(httpResponse.statusCode) else {
+                print("Error with the response, unexpected status code: \(String(describing: response))")
+                return
+            }
+            if let data = data {
+                image = UIImage(data: data) ?? UIImage()
+            }
+        }
+        task.resume()
         return image
     }
     
