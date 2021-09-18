@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7Av-Af-ohJ">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Table View Controller-->
+        <scene sceneID="UJJ-g3-RmG">
+            <objects>
+                <tableViewController id="m4j-71-K8d" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="x38-ww-FvG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="movieCell" rowHeight="80" id="AJm-Gg-pgf" userLabel="gadgetsCell" customClass="GadgetsTableViewCell" customModule="GadgetsStore" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="80"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AJm-Gg-pgf" id="J2u-s3-81r">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jurassic.png" translatesAutoresizingMaskIntoConstraints="NO" id="hka-ei-MNf" userLabel="Gadgets Image View">
+                                            <rect key="frame" x="8" y="5" width="60" height="70"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="60" id="maH-Cc-1XX"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X41-Tn-cM6" userLabel="Gadget Title Label">
+                                            <rect key="frame" x="76" y="5" width="330" height="24"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                            <color key="textColor" systemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2b2-CM-fWY" userLabel="Gadget Price Label">
+                                            <rect key="frame" x="83" y="39" width="311" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                            <color key="textColor" systemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="2b2-CM-fWY" secondAttribute="trailing" id="6wH-qj-Wmu"/>
+                                        <constraint firstAttribute="trailing" secondItem="X41-Tn-cM6" secondAttribute="trailing" constant="8" id="CHq-4v-Qgl"/>
+                                        <constraint firstItem="X41-Tn-cM6" firstAttribute="top" secondItem="hka-ei-MNf" secondAttribute="top" id="IGd-Q6-gqn"/>
+                                        <constraint firstItem="hka-ei-MNf" firstAttribute="leading" secondItem="J2u-s3-81r" secondAttribute="leading" constant="8" id="KJT-JW-igq"/>
+                                        <constraint firstAttribute="bottom" secondItem="hka-ei-MNf" secondAttribute="bottom" constant="5" id="MCc-ld-ppa"/>
+                                        <constraint firstItem="hka-ei-MNf" firstAttribute="top" secondItem="J2u-s3-81r" secondAttribute="top" constant="5" id="XBO-Mm-u48"/>
+                                        <constraint firstItem="X41-Tn-cM6" firstAttribute="leading" secondItem="hka-ei-MNf" secondAttribute="trailing" constant="8" id="df1-ud-COM"/>
+                                        <constraint firstItem="2b2-CM-fWY" firstAttribute="top" secondItem="X41-Tn-cM6" secondAttribute="bottom" constant="10" id="iVc-5C-mG2"/>
+                                        <constraint firstItem="2b2-CM-fWY" firstAttribute="leading" secondItem="hka-ei-MNf" secondAttribute="trailing" constant="15" id="lef-Oi-786"/>
+                                        <constraint firstItem="hka-ei-MNf" firstAttribute="centerY" secondItem="J2u-s3-81r" secondAttribute="centerY" id="qnL-NO-MhP"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="gadgetImageView" destination="hka-ei-MNf" id="W16-vv-OHS"/>
+                                    <outlet property="gadgetName" destination="X41-Tn-cM6" id="iHI-ws-0aS"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="m4j-71-K8d" id="YUT-Ib-6Ta"/>
+                            <outlet property="delegate" destination="m4j-71-K8d" id="b2g-8D-i8y"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="5Ju-Jk-xLO"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gtm-Ju-4OL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="852" y="94"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="OhJ-Am-Abn">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7Av-Af-ohJ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZQp-92-Weu">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="m4j-71-K8d" kind="relationship" relationship="rootViewController" id="tsx-xX-wgc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ity-Bq-2gY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="11.594202898550726" y="93.75"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="jurassic.png" width="65" height="81"/>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
