@@ -14,7 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        let navigationVC = window?.rootViewController as? UINavigationController
+        let gadgetHomeVC = navigationVC?.viewControllers[0] as! HomePageViewController
+        gadgetHomeVC.moc = persistentContainer.viewContext
+        return true
         return true
     }
 

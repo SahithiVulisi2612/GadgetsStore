@@ -16,6 +16,10 @@
 		F09CACDF26F6143C00E6EAA8 /* GadgetsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09CACDE26F6143C00E6EAA8 /* GadgetsTableViewCell.swift */; };
 		F09CACE626F621A200E6EAA8 /* GadgetDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09CACE526F621A200E6EAA8 /* GadgetDetails.swift */; };
 		F09CACE826F645E700E6EAA8 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09CACE726F645E700E6EAA8 /* CheckoutViewController.swift */; };
+		F0C6F9D126F750A900FF92E4 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6F9D026F750A900FF92E4 /* CartViewController.swift */; };
+		F0C6F9D426F7535800FF92E4 /* Gadgets+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6F9D226F7535800FF92E4 /* Gadgets+CoreDataClass.swift */; };
+		F0C6F9D526F7535800FF92E4 /* Gadgets+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6F9D326F7535800FF92E4 /* Gadgets+CoreDataProperties.swift */; };
+		F0C6F9D726F753A900FF92E4 /* GadgetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6F9D626F753A900FF92E4 /* GadgetService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +34,10 @@
 		F09CACDE26F6143C00E6EAA8 /* GadgetsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GadgetsTableViewCell.swift; sourceTree = "<group>"; };
 		F09CACE526F621A200E6EAA8 /* GadgetDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GadgetDetails.swift; sourceTree = "<group>"; };
 		F09CACE726F645E700E6EAA8 /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
+		F0C6F9D026F750A900FF92E4 /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
+		F0C6F9D226F7535800FF92E4 /* Gadgets+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gadgets+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F0C6F9D326F7535800FF92E4 /* Gadgets+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gadgets+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F0C6F9D626F753A900FF92E4 /* GadgetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GadgetService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +84,8 @@
 			isa = PBXGroup;
 			children = (
 				F09CACD026F612A900E6EAA8 /* GadgetsStore.xcdatamodeld */,
+				F0C6F9D226F7535800FF92E4 /* Gadgets+CoreDataClass.swift */,
+				F0C6F9D326F7535800FF92E4 /* Gadgets+CoreDataProperties.swift */,
 				F09CACE526F621A200E6EAA8 /* GadgetDetails.swift */,
 			);
 			path = Model;
@@ -95,6 +105,7 @@
 		F09CACE226F61B8900E6EAA8 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				F0C6F9D626F753A900FF92E4 /* GadgetService.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -104,6 +115,7 @@
 			children = (
 				F09CACCB26F612A900E6EAA8 /* HomePageViewController.swift */,
 				F09CACE726F645E700E6EAA8 /* CheckoutViewController.swift */,
+				F0C6F9D026F750A900FF92E4 /* CartViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -186,8 +198,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0C6F9D526F7535800FF92E4 /* Gadgets+CoreDataProperties.swift in Sources */,
+				F0C6F9D726F753A900FF92E4 /* GadgetService.swift in Sources */,
 				F09CACCC26F612A900E6EAA8 /* HomePageViewController.swift in Sources */,
+				F0C6F9D426F7535800FF92E4 /* Gadgets+CoreDataClass.swift in Sources */,
 				F09CACE626F621A200E6EAA8 /* GadgetDetails.swift in Sources */,
+				F0C6F9D126F750A900FF92E4 /* CartViewController.swift in Sources */,
 				F09CACD226F612A900E6EAA8 /* GadgetsStore.xcdatamodeld in Sources */,
 				F09CACDF26F6143C00E6EAA8 /* GadgetsTableViewCell.swift in Sources */,
 				F09CACE826F645E700E6EAA8 /* CheckoutViewController.swift in Sources */,

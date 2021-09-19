@@ -7,8 +7,11 @@
 
 import UIKit
 
+protocol SelectedItemsDelegate {
+    func itemsSelected()
+}
+
 class GadgetsTableViewCell: UITableViewCell {
-    
     
     @IBOutlet weak var gadgetImageView: UIImageView!
     @IBOutlet weak var gadgetNameLabel: UILabel!
@@ -16,10 +19,29 @@ class GadgetsTableViewCell: UITableViewCell {
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var addToCartButton: UIButton!
     
+    @IBOutlet weak var firstRatingStar: UIButton!
+    
+    @IBOutlet weak var thirdRatingStar: UIButton!
+    @IBOutlet weak var secondRatingStar: UIButton!
+    @IBOutlet weak var fifthRatingStar: UIButton!
+    @IBOutlet weak var forthRatingStar: UIButton!
+    var ratingStarsArray = [UIButton]()
+    var delegate: SelectedItemsDelegate?
+    var count = 0
+    var service: GadgetService?
+    var gadgetDataModel: GadgetDetails?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        addToCartButton.tag = 0
+        ratingStarsArray = [firstRatingStar,secondRatingStar, thirdRatingStar,forthRatingStar,fifthRatingStar]
+        if count == 1 {
+            addToCartButton.setTitle("Added", for: .normal)
+            count = 0
+        }
+        else {
+            addToCartButton.setTitle("Add To Cart", for: .normal)
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -27,20 +49,31 @@ class GadgetsTableViewCell: UITableViewCell {
     }
     
     @IBAction func addToCartButtonAction(_ sender: UIButton) {
-        if sender.tag == 0 {
-            sender.setTitle("Add To Cart", for: .normal)
-            sender.tag = 1
-        } else if sender.tag == 1 {
+//        if count == 0 {
+//            sender.setTitle("Add To Cart", for: .normal)
+            count = 1
+//        } else if count == 1 {
             sender.setTitle("Added", for: .normal)
+//        }
+        service?.addGadget(dataModel: gadgetDataModel ?? GadgetDetails(name: "", price: "", rating: 0, image_url: ""))
+        delegate?.itemsSelected()
+    }
+    
+    func configureCell(data: GadgetDetails) {
+        for range in 0 ..< 5 {
+            ratingStarsArray[range].isHidden = true
+        }
+        self.gadgetNameLabel.text = data.name
+//        if let gadgetPrice = data.price {
+            self.gadgetPriceLabel.text = "Price: \(String(describing: data.price)) INR"
+//        }
+        setUpRatingStars(rating: data.rating)
+        gadgetDataModel = data
+    }
+    
+    func setUpRatingStars(rating:Int) {
+        for range in 0 ..< rating {
+            ratingStarsArray[range].isHidden = false
         }
     }
-    
-    func configureCell(name: String?, price: String?, rating: Int?, image: UIImage?) {
-        self.gadgetNameLabel.text = name
-        self.gadgetImageView.image = image
-        self.gadgetPriceLabel.text = "Price: \(String(describing: price))"
-        self.ratingLabel.text = "Rating: \(String(rating ?? 0))"
-    }
-    
-
 }

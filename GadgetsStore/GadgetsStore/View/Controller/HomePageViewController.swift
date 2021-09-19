@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class HomePageViewController: UITableViewController {
     let domainURL =  "https://my-json-server.typicode.com/nancymadan/assignment/db"
@@ -13,11 +14,22 @@ class HomePageViewController: UITableViewController {
     var gadgetslistWithHighPrice = [GadgetDetails]()
     var gadgetslistWithLowPrice = [GadgetDetails]()
     var spinner = UIActivityIndicatorView(style: .large)
+    var gadgetImage = UIImage()
+    var gadgetService: GadgetService?
+    
+    var moc: NSManagedObjectContext? {
+        didSet {
+            if let moc = moc {
+                gadgetService = GadgetService(moc: moc)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Gadgets Store"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "cartImage"), style: .plain, target: self, action: #selector(navigateToCheckout))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "cart"), style: .plain, target: self, action: #selector(navigateToCheckout))
+        self.navigationItem.rightBarButtonItem?.tintColor = .black
         self.view.addSubview(spinner)
         spinner.translatesAutoresizingMaskIntoConstraints = false
         spinner.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
@@ -31,12 +43,16 @@ class HomePageViewController: UITableViewController {
         }
         let task = URLSession.shared.dataTask(with: gadgetsUrl) { (data, response, error) in
             if let err = error {
-                print("Error with fetching gadgets: \(err)")
+                self.errorAlert(message: "Error with fetching gadgets: \(err)")
+                self.spinner.stopAnimating()
+                self.spinner.removeFromSuperview()
                 return
             }
             guard let httpResponse = response as? HTTPURLResponse,
                   (200...299).contains(httpResponse.statusCode) else {
-                print("Error with the response, unexpected status code: \(String(describing: response))")
+                self.errorAlert(message: "Error with the response, unexpected status code: \(String(describing: response))")
+                self.spinner.stopAnimating()
+                self.spinner.removeFromSuperview()
                 return
             }
             if let data = data {
@@ -96,24 +112,45 @@ extension HomePageViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "gadgetCell", for: indexPath) as? GadgetsTableViewCell
+        cell?.service = gadgetService
         if indexPath.section == 0 {
-            cell?.configureCell(name: gadgetslistWithLowPrice[indexPath.row].name, price: gadgetslistWithLowPrice[indexPath.row].price, rating: gadgetslistWithLowPrice[indexPath.row].rating, image: getIamgeFromURl(with:gadgetslistWithLowPrice[indexPath.row].image_url))
+            cell?.configureCell(data: gadgetslistWithLowPrice[indexPath.row])
+            cell?.gadgetImageView?.getImageFromURl(with:gadgetslistWithLowPrice[indexPath.row].image_url)
         } else {
-            cell?.configureCell(name: gadgetslistWithHighPrice[indexPath.row].name, price: gadgetslistWithHighPrice[indexPath.row].price, rating: gadgetslistWithHighPrice[indexPath.row].rating, image: getIamgeFromURl(with:gadgetslistWithHighPrice[indexPath.row].image_url))
+            cell?.configureCell(data: gadgetslistWithHighPrice[indexPath.row])
+            cell?.gadgetImageView?.getImageFromURl(with:gadgetslistWithHighPrice[indexPath.row].image_url)
         }
         return cell ?? UITableViewCell()
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        return 120
     }
 }
 
-extension HomePageViewController {
-    private func getIamgeFromURl(with urlString: String?) -> UIImage? {
-        var image = UIImage()
+extension HomePageViewController: SelectedItemsDelegate {
+    func itemsSelected() {
+    }
+    
+    @objc func navigateToCheckout() {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let cartVC = storyBoard.instantiateViewController(withIdentifier: "cartVC") as! CartViewController
+        cartVC.service = gadgetService
+        self.navigationController?.pushViewController(cartVC, animated: true)
+    }
+    
+    func errorAlert(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
+    }
+}
+
+extension UIImageView {
+    func getImageFromURl(with urlString: String?) {
         guard let url = URL(string: urlString ?? "") else {
-            return nil
+            return
         }
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let err = error {
@@ -126,16 +163,12 @@ extension HomePageViewController {
                 return
             }
             if let data = data {
-                image = UIImage(data: data) ?? UIImage()
+                DispatchQueue.main.async {
+                    self.image = UIImage(data: data)
+                    self.contentMode = .scaleAspectFit
+                }
             }
         }
         task.resume()
-        return image
-    }
-    
-    @objc func navigateToCheckout() {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let checkoutVC = storyBoard.instantiateViewController(withIdentifier: "checkoutVC") as! CheckoutViewController
-        self.navigationController?.pushViewController(checkoutVC, animated: true)
     }
 }
