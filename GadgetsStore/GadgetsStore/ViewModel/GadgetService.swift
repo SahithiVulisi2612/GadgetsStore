@@ -41,6 +41,11 @@ class GadgetService {
         return fetchResultController
     }
     
+    func removeGadget(gadget: Gadgets) {
+        moc.delete(gadget)
+        save()
+    }
+    
     func save() {
         do {
             try moc.save()

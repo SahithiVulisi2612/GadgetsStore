@@ -20,6 +20,8 @@
 		F0C6F9D426F7535800FF92E4 /* Gadgets+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6F9D226F7535800FF92E4 /* Gadgets+CoreDataClass.swift */; };
 		F0C6F9D526F7535800FF92E4 /* Gadgets+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6F9D326F7535800FF92E4 /* Gadgets+CoreDataProperties.swift */; };
 		F0C6F9D726F753A900FF92E4 /* GadgetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6F9D626F753A900FF92E4 /* GadgetService.swift */; };
+		F0C6F9D926F7767900FF92E4 /* CartItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6F9D826F7767900FF92E4 /* CartItems.swift */; };
+		F0C6F9DB26F7998400FF92E4 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6F9DA26F7998400FF92E4 /* UIImageViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		F0C6F9D226F7535800FF92E4 /* Gadgets+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gadgets+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F0C6F9D326F7535800FF92E4 /* Gadgets+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gadgets+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F0C6F9D626F753A900FF92E4 /* GadgetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GadgetService.swift; sourceTree = "<group>"; };
+		F0C6F9D826F7767900FF92E4 /* CartItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItems.swift; sourceTree = "<group>"; };
+		F0C6F9DA26F7998400FF92E4 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +80,7 @@
 				F09CACC726F612A900E6EAA8 /* AppDelegate.swift */,
 				F09CACD326F612AA00E6EAA8 /* Assets.xcassets */,
 				F09CACD826F612AA00E6EAA8 /* Info.plist */,
+				F0C6F9DA26F7998400FF92E4 /* UIImageViewExtension.swift */,
 			);
 			path = GadgetsStore;
 			sourceTree = "<group>";
@@ -87,6 +92,7 @@
 				F0C6F9D226F7535800FF92E4 /* Gadgets+CoreDataClass.swift */,
 				F0C6F9D326F7535800FF92E4 /* Gadgets+CoreDataProperties.swift */,
 				F09CACE526F621A200E6EAA8 /* GadgetDetails.swift */,
+				F0C6F9D826F7767900FF92E4 /* CartItems.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -200,12 +206,14 @@
 			files = (
 				F0C6F9D526F7535800FF92E4 /* Gadgets+CoreDataProperties.swift in Sources */,
 				F0C6F9D726F753A900FF92E4 /* GadgetService.swift in Sources */,
+				F0C6F9DB26F7998400FF92E4 /* UIImageViewExtension.swift in Sources */,
 				F09CACCC26F612A900E6EAA8 /* HomePageViewController.swift in Sources */,
 				F0C6F9D426F7535800FF92E4 /* Gadgets+CoreDataClass.swift in Sources */,
 				F09CACE626F621A200E6EAA8 /* GadgetDetails.swift in Sources */,
 				F0C6F9D126F750A900FF92E4 /* CartViewController.swift in Sources */,
 				F09CACD226F612A900E6EAA8 /* GadgetsStore.xcdatamodeld in Sources */,
 				F09CACDF26F6143C00E6EAA8 /* GadgetsTableViewCell.swift in Sources */,
+				F0C6F9D926F7767900FF92E4 /* CartItems.swift in Sources */,
 				F09CACE826F645E700E6EAA8 /* CheckoutViewController.swift in Sources */,
 				F09CACC826F612A900E6EAA8 /* AppDelegate.swift in Sources */,
 			);

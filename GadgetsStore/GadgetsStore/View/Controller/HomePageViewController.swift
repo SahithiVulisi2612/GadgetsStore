@@ -11,11 +11,12 @@ import CoreData
 class HomePageViewController: UITableViewController {
     let domainURL =  "https://my-json-server.typicode.com/nancymadan/assignment/db"
     var gadgetDataModel: GadgetDetails?
-    var gadgetslistWithHighPrice = [GadgetDetails]()
-    var gadgetslistWithLowPrice = [GadgetDetails]()
+    var gadgetslistWithHighPrice = [CartItems]()
+    var gadgetslistWithLowPrice = [CartItems]()
     var spinner = UIActivityIndicatorView(style: .large)
     var gadgetImage = UIImage()
     var gadgetService: GadgetService?
+    var isAddedToCart: Bool = false
     
     var moc: NSManagedObjectContext? {
         didSet {
@@ -43,17 +44,22 @@ class HomePageViewController: UITableViewController {
         }
         let task = URLSession.shared.dataTask(with: gadgetsUrl) { (data, response, error) in
             if let err = error {
+                DispatchQueue.main.async {
                 self.errorAlert(message: "Error with fetching gadgets: \(err)")
                 self.spinner.stopAnimating()
                 self.spinner.removeFromSuperview()
+                }
                 return
             }
             guard let httpResponse = response as? HTTPURLResponse,
                   (200...299).contains(httpResponse.statusCode) else {
+                DispatchQueue.main.async {
                 self.errorAlert(message: "Error with the response, unexpected status code: \(String(describing: response))")
                 self.spinner.stopAnimating()
                 self.spinner.removeFromSuperview()
+                }
                 return
+                
             }
             if let data = data {
                 let productsList:[String:[GadgetDetails]] = try! JSONDecoder().decode([String: [GadgetDetails]].self, from: data)
@@ -62,9 +68,9 @@ class HomePageViewController: UITableViewController {
                 }
                 for ele in list {
                     if (Int(ele.price) ?? 0) > 1000 {
-                        self.gadgetslistWithHighPrice.append(ele)
+                        self.gadgetslistWithHighPrice.append(CartItems(gadget: ele))
                     } else {
-                        self.gadgetslistWithLowPrice.append(ele)
+                        self.gadgetslistWithLowPrice.append(CartItems(gadget: ele))
                     }
                 }
                 DispatchQueue.main.async {
@@ -101,7 +107,7 @@ extension HomePageViewController {
             label.text = "Gadgets priced above 1000"
         }
         label.textColor = .black
-        view.backgroundColor = .lightGray
+        view.backgroundColor = UIColor(red: 135, green: 206, blue: 250, alpha: 1)
         view.addSubview(label)
         return view
     }
@@ -112,13 +118,13 @@ extension HomePageViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "gadgetCell", for: indexPath) as? GadgetsTableViewCell
-        cell?.service = gadgetService
+        cell?.delegate = self
         if indexPath.section == 0 {
-            cell?.configureCell(data: gadgetslistWithLowPrice[indexPath.row])
-            cell?.gadgetImageView?.getImageFromURl(with:gadgetslistWithLowPrice[indexPath.row].image_url)
+            cell?.configureCell(data: gadgetslistWithLowPrice[indexPath.row],indexpath: indexPath)
+            cell?.gadgetImageView?.getImageFromURl(with:gadgetslistWithLowPrice[indexPath.row].gadget.image_url)
         } else {
-            cell?.configureCell(data: gadgetslistWithHighPrice[indexPath.row])
-            cell?.gadgetImageView?.getImageFromURl(with:gadgetslistWithHighPrice[indexPath.row].image_url)
+            cell?.configureCell(data: gadgetslistWithHighPrice[indexPath.row],indexpath: indexPath)
+            cell?.gadgetImageView?.getImageFromURl(with:gadgetslistWithHighPrice[indexPath.row].gadget.image_url)
         }
         return cell ?? UITableViewCell()
     }
@@ -129,7 +135,24 @@ extension HomePageViewController {
 }
 
 extension HomePageViewController: SelectedItemsDelegate {
-    func itemsSelected() {
+    func itemsSelected(cartData: CartItems, index: IndexPath?) {
+        guard let indexPath = index else {
+            return
+        }
+        if indexPath.section == 0 {
+            if !gadgetslistWithLowPrice[indexPath.row].isAddedToCart  {
+                gadgetslistWithLowPrice[indexPath.row].isAddedToCart = true
+                gadgetslistWithLowPrice[indexPath.row].itemStatus = "Added"
+                gadgetService?.addGadget(dataModel: cartData.gadget)
+            }
+        } else {
+            if !gadgetslistWithHighPrice[indexPath.row].isAddedToCart  {
+                gadgetslistWithHighPrice[indexPath.row].isAddedToCart = true
+                gadgetslistWithHighPrice[indexPath.row].itemStatus = "Added"
+                gadgetService?.addGadget(dataModel: cartData.gadget)
+            }
+        }
+        tableView.reloadData()
     }
     
     @objc func navigateToCheckout() {
@@ -144,31 +167,5 @@ extension HomePageViewController: SelectedItemsDelegate {
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
-    }
-}
-
-extension UIImageView {
-    func getImageFromURl(with urlString: String?) {
-        guard let url = URL(string: urlString ?? "") else {
-            return
-        }
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let err = error {
-                print("Error with fetching images: \(err)")
-                return
-            }
-            guard let httpResponse = response as? HTTPURLResponse,
-                  (200...299).contains(httpResponse.statusCode) else {
-                print("Error with the response, unexpected status code: \(String(describing: response))")
-                return
-            }
-            if let data = data {
-                DispatchQueue.main.async {
-                    self.image = UIImage(data: data)
-                    self.contentMode = .scaleAspectFit
-                }
-            }
-        }
-        task.resume()
     }
 }

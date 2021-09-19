@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SelectedItemsDelegate {
-    func itemsSelected()
+    func itemsSelected(cartData: CartItems, index: IndexPath?)
 }
 
 class GadgetsTableViewCell: UITableViewCell {
@@ -29,46 +29,34 @@ class GadgetsTableViewCell: UITableViewCell {
     var delegate: SelectedItemsDelegate?
     var count = 0
     var service: GadgetService?
-    var gadgetDataModel: GadgetDetails?
+//    var gadgetDataModel: GadgetDetails?
+    var cartItemsDataModel: CartItems?
+    var index: IndexPath?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         ratingStarsArray = [firstRatingStar,secondRatingStar, thirdRatingStar,forthRatingStar,fifthRatingStar]
-        if count == 1 {
-            addToCartButton.setTitle("Added", for: .normal)
-            count = 0
-        }
-        else {
-            addToCartButton.setTitle("Add To Cart", for: .normal)
-        }
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
     @IBAction func addToCartButtonAction(_ sender: UIButton) {
-//        if count == 0 {
-//            sender.setTitle("Add To Cart", for: .normal)
-            count = 1
-//        } else if count == 1 {
-            sender.setTitle("Added", for: .normal)
-//        }
-        service?.addGadget(dataModel: gadgetDataModel ?? GadgetDetails(name: "", price: "", rating: 0, image_url: ""))
-        delegate?.itemsSelected()
+        delegate?.itemsSelected(cartData: (cartItemsDataModel)!, index: index)
     }
     
-    func configureCell(data: GadgetDetails) {
+    func configureCell(data: CartItems, indexpath: IndexPath) {
         for range in 0 ..< 5 {
             ratingStarsArray[range].isHidden = true
         }
-        self.gadgetNameLabel.text = data.name
-//        if let gadgetPrice = data.price {
-            self.gadgetPriceLabel.text = "Price: \(String(describing: data.price)) INR"
-//        }
-        setUpRatingStars(rating: data.rating)
-        gadgetDataModel = data
+        self.gadgetNameLabel.text = data.gadget.name
+        self.gadgetPriceLabel.text = "Price: \(String(describing: data.gadget.price)) INR"
+        self.addToCartButton.setTitle(data.itemStatus, for: .normal)
+        setUpRatingStars(rating: data.gadget.rating)
+        cartItemsDataModel = data
+        self.index = indexpath
     }
     
     func setUpRatingStars(rating:Int) {
