@@ -63,7 +63,7 @@ extension HomePageViewController {
             label.text = "Gadgets priced above 1000"
         }
         label.textColor = .black
-        view.backgroundColor = UIColor(red: 0, green: 191, blue: 255, alpha: 1)
+        view.backgroundColor = .white
         view.addSubview(label)
         return view
     }
