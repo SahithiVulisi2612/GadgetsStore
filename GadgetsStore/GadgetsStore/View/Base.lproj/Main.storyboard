@@ -11,7 +11,7 @@
         <!--Home Page View Controller-->
         <scene sceneID="UJJ-g3-RmG">
             <objects>
-                <tableViewController id="m4j-71-K8d" customClass="HomePageViewController" customModule="GadgetsStore" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="HomePageViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="m4j-71-K8d" customClass="HomePageViewController" customModule="GadgetsStore" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="x38-ww-FvG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -296,7 +296,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GVo-58-p9E">
-                                <rect key="frame" x="100" y="792" width="214" height="36"/>
+                                <rect key="frame" x="100" y="792" width="214" height="40"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                 <state key="normal" title="CheckOut">
                                     <color key="titleColor" systemColor="labelColor"/>
@@ -312,9 +312,10 @@
                             <constraint firstItem="Hm8-s6-dIC" firstAttribute="top" secondItem="8sP-Bq-OKi" secondAttribute="top" constant="10" id="5hS-gJ-Gz1"/>
                             <constraint firstItem="GVo-58-p9E" firstAttribute="centerX" secondItem="2V1-Wy-yAJ" secondAttribute="centerX" id="Sa9-NE-foJ"/>
                             <constraint firstItem="GVo-58-p9E" firstAttribute="leading" secondItem="8sP-Bq-OKi" secondAttribute="leading" constant="100" id="Sse-m5-bwf"/>
-                            <constraint firstItem="GVo-58-p9E" firstAttribute="top" secondItem="Hm8-s6-dIC" secondAttribute="bottom" constant="30" id="TQo-Zy-qbL"/>
+                            <constraint firstItem="GVo-58-p9E" firstAttribute="top" secondItem="Hm8-s6-dIC" secondAttribute="bottom" constant="30" id="YjD-vq-CiW"/>
+                            <constraint firstItem="8sP-Bq-OKi" firstAttribute="bottom" secondItem="GVo-58-p9E" secondAttribute="bottom" constant="30" id="gJd-pi-JkE"/>
                             <constraint firstItem="Hm8-s6-dIC" firstAttribute="leading" secondItem="8sP-Bq-OKi" secondAttribute="leading" id="iwl-0F-XTS"/>
-                            <constraint firstItem="8sP-Bq-OKi" firstAttribute="bottom" secondItem="Hm8-s6-dIC" secondAttribute="bottom" constant="100" id="ugl-0j-uOy"/>
+                            <constraint firstItem="8sP-Bq-OKi" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Hm8-s6-dIC" secondAttribute="bottom" constant="100" id="ugl-0j-uOy"/>
                             <constraint firstItem="8sP-Bq-OKi" firstAttribute="trailing" secondItem="Hm8-s6-dIC" secondAttribute="trailing" id="vwa-PJ-I6U"/>
                         </constraints>
                     </view>

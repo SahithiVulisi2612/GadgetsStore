@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F0652D2126F8BB18000FCCBF /* GadgetsStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0652D2026F8BB18000FCCBF /* GadgetsStoreTests.swift */; };
+		F0652D2826F8BB21000FCCBF /* HomeViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0652D1826F8B9D1000FCCBF /* HomeViewControllerTest.swift */; };
 		F09CACC826F612A900E6EAA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09CACC726F612A900E6EAA8 /* AppDelegate.swift */; };
 		F09CACCC26F612A900E6EAA8 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09CACCB26F612A900E6EAA8 /* HomePageViewController.swift */; };
 		F09CACCF26F612A900E6EAA8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F09CACCD26F612A900E6EAA8 /* Main.storyboard */; };
@@ -20,11 +22,25 @@
 		F0C6F9D426F7535800FF92E4 /* Gadgets+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6F9D226F7535800FF92E4 /* Gadgets+CoreDataClass.swift */; };
 		F0C6F9D526F7535800FF92E4 /* Gadgets+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6F9D326F7535800FF92E4 /* Gadgets+CoreDataProperties.swift */; };
 		F0C6F9D726F753A900FF92E4 /* GadgetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6F9D626F753A900FF92E4 /* GadgetService.swift */; };
-		F0C6F9D926F7767900FF92E4 /* CartItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6F9D826F7767900FF92E4 /* CartItems.swift */; };
+		F0C6F9D926F7767900FF92E4 /* GadgetsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6F9D826F7767900FF92E4 /* GadgetsInfo.swift */; };
 		F0C6F9DB26F7998400FF92E4 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6F9DA26F7998400FF92E4 /* UIImageViewExtension.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		F0652D2326F8BB18000FCCBF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F09CACBC26F612A900E6EAA8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F09CACC326F612A900E6EAA8;
+			remoteInfo = GadgetsStore;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		F0652D1826F8B9D1000FCCBF /* HomeViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerTest.swift; sourceTree = "<group>"; };
+		F0652D1E26F8BB18000FCCBF /* GadgetsStoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GadgetsStoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0652D2026F8BB18000FCCBF /* GadgetsStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GadgetsStoreTests.swift; sourceTree = "<group>"; };
+		F0652D2226F8BB18000FCCBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F09CACC426F612A900E6EAA8 /* GadgetsStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GadgetsStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F09CACC726F612A900E6EAA8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F09CACCB26F612A900E6EAA8 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
@@ -40,11 +56,18 @@
 		F0C6F9D226F7535800FF92E4 /* Gadgets+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gadgets+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F0C6F9D326F7535800FF92E4 /* Gadgets+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gadgets+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F0C6F9D626F753A900FF92E4 /* GadgetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GadgetService.swift; sourceTree = "<group>"; };
-		F0C6F9D826F7767900FF92E4 /* CartItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItems.swift; sourceTree = "<group>"; };
+		F0C6F9D826F7767900FF92E4 /* GadgetsInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GadgetsInfo.swift; sourceTree = "<group>"; };
 		F0C6F9DA26F7998400FF92E4 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		F0652D1B26F8BB18000FCCBF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F09CACC126F612A900E6EAA8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -55,10 +78,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F0652D1F26F8BB18000FCCBF /* GadgetsStoreTests */ = {
+			isa = PBXGroup;
+			children = (
+				F0652D1826F8B9D1000FCCBF /* HomeViewControllerTest.swift */,
+				F0652D2026F8BB18000FCCBF /* GadgetsStoreTests.swift */,
+				F0652D2226F8BB18000FCCBF /* Info.plist */,
+			);
+			path = GadgetsStoreTests;
+			sourceTree = "<group>";
+		};
 		F09CACBB26F612A900E6EAA8 = {
 			isa = PBXGroup;
 			children = (
 				F09CACC626F612A900E6EAA8 /* GadgetsStore */,
+				F0652D1F26F8BB18000FCCBF /* GadgetsStoreTests */,
 				F09CACC526F612A900E6EAA8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -67,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				F09CACC426F612A900E6EAA8 /* GadgetsStore.app */,
+				F0652D1E26F8BB18000FCCBF /* GadgetsStoreTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -92,7 +127,7 @@
 				F0C6F9D226F7535800FF92E4 /* Gadgets+CoreDataClass.swift */,
 				F0C6F9D326F7535800FF92E4 /* Gadgets+CoreDataProperties.swift */,
 				F09CACE526F621A200E6EAA8 /* GadgetDetails.swift */,
-				F0C6F9D826F7767900FF92E4 /* CartItems.swift */,
+				F0C6F9D826F7767900FF92E4 /* GadgetsInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -120,8 +155,8 @@
 			isa = PBXGroup;
 			children = (
 				F09CACCB26F612A900E6EAA8 /* HomePageViewController.swift */,
-				F09CACE726F645E700E6EAA8 /* CheckoutViewController.swift */,
 				F0C6F9D026F750A900FF92E4 /* CartViewController.swift */,
+				F09CACE726F645E700E6EAA8 /* CheckoutViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -137,6 +172,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		F0652D1D26F8BB18000FCCBF /* GadgetsStoreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F0652D2526F8BB18000FCCBF /* Build configuration list for PBXNativeTarget "GadgetsStoreTests" */;
+			buildPhases = (
+				F0652D1A26F8BB18000FCCBF /* Sources */,
+				F0652D1B26F8BB18000FCCBF /* Frameworks */,
+				F0652D1C26F8BB18000FCCBF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F0652D2426F8BB18000FCCBF /* PBXTargetDependency */,
+			);
+			name = GadgetsStoreTests;
+			productName = GadgetsStoreTests;
+			productReference = F0652D1E26F8BB18000FCCBF /* GadgetsStoreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		F09CACC326F612A900E6EAA8 /* GadgetsStore */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F09CACDB26F612AA00E6EAA8 /* Build configuration list for PBXNativeTarget "GadgetsStore" */;
@@ -163,6 +216,10 @@
 				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
+					F0652D1D26F8BB18000FCCBF = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = F09CACC326F612A900E6EAA8;
+					};
 					F09CACC326F612A900E6EAA8 = {
 						CreatedOnToolsVersion = 12.5.1;
 					};
@@ -182,11 +239,19 @@
 			projectRoot = "";
 			targets = (
 				F09CACC326F612A900E6EAA8 /* GadgetsStore */,
+				F0652D1D26F8BB18000FCCBF /* GadgetsStoreTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		F0652D1C26F8BB18000FCCBF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F09CACC226F612A900E6EAA8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -200,6 +265,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		F0652D1A26F8BB18000FCCBF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0652D2126F8BB18000FCCBF /* GadgetsStoreTests.swift in Sources */,
+				F0652D2826F8BB21000FCCBF /* HomeViewControllerTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F09CACC026F612A900E6EAA8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -213,13 +287,21 @@
 				F0C6F9D126F750A900FF92E4 /* CartViewController.swift in Sources */,
 				F09CACD226F612A900E6EAA8 /* GadgetsStore.xcdatamodeld in Sources */,
 				F09CACDF26F6143C00E6EAA8 /* GadgetsTableViewCell.swift in Sources */,
-				F0C6F9D926F7767900FF92E4 /* CartItems.swift in Sources */,
+				F0C6F9D926F7767900FF92E4 /* GadgetsInfo.swift in Sources */,
 				F09CACE826F645E700E6EAA8 /* CheckoutViewController.swift in Sources */,
 				F09CACC826F612A900E6EAA8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F0652D2426F8BB18000FCCBF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F09CACC326F612A900E6EAA8 /* GadgetsStore */;
+			targetProxy = F0652D2326F8BB18000FCCBF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F09CACCD26F612A900E6EAA8 /* Main.storyboard */ = {
@@ -241,6 +323,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		F0652D2626F8BB18000FCCBF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = GadgetsStoreTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = public.GadgetsStoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GadgetsStore.app/GadgetsStore";
+			};
+			name = Debug;
+		};
+		F0652D2726F8BB18000FCCBF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = GadgetsStoreTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = public.GadgetsStoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GadgetsStore.app/GadgetsStore";
+			};
+			name = Release;
+		};
 		F09CACD926F612AA00E6EAA8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -396,6 +516,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F0652D2526F8BB18000FCCBF /* Build configuration list for PBXNativeTarget "GadgetsStoreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F0652D2626F8BB18000FCCBF /* Debug */,
+				F0652D2726F8BB18000FCCBF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F09CACBF26F612A900E6EAA8 /* Build configuration list for PBXProject "GadgetsStore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

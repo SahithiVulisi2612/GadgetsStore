@@ -8,7 +8,7 @@
 import CoreData
 import UIKit
 
-class CartViewController: UIViewController, NSFetchedResultsControllerDelegate {
+class CartViewController: UIViewController {
     var service: GadgetService?
     private var fetchResultController: NSFetchedResultsController<Gadgets>?
     @IBOutlet weak var cartTableView: UITableView!
@@ -54,7 +54,7 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cartGadgetCell", for: indexPath) as! GadgetsTableViewCell
         cell.delegate = self
         if let gadget = fetchResultController?.object(at: indexPath) {
-            let cartitem = CartItems(gadget: GadgetDetails(name: gadget.name ?? "", price: gadget.price ?? "0", rating: Int(gadget.rating), image_url: gadget.image_url ?? ""), itemStatus: "Remove")
+            let cartitem = GadgetsInfo(gadget: GadgetDetails(name: gadget.name ?? "", price: gadget.price ?? "0", rating: Int(gadget.rating), image_url: gadget.image_url ?? ""), itemStatus: "Remove")
             cell.configureCell(data: cartitem, indexpath: indexPath)
             cell.gadgetImageView?.getImageFromURl(with:gadget.image_url)
             }
@@ -64,13 +64,14 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
     }
-    
+}
+
+extension CartViewController: NSFetchedResultsControllerDelegate {
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         cartTableView.beginUpdates()
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        
         guard let index = indexPath else {return}
         switch type {
         case .delete:
@@ -86,7 +87,7 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension CartViewController: SelectedItemsDelegate {
-    func itemsSelected(cartData: CartItems, index: IndexPath?) {
+    func itemsSelected(cartData: GadgetsInfo, index: IndexPath?) {
         guard let indexPath = index else {
             return
         }

@@ -11,8 +11,8 @@ import CoreData
 class HomePageViewController: UITableViewController {
     let domainURL =  "https://my-json-server.typicode.com/nancymadan/assignment/db"
     var gadgetDataModel: GadgetDetails?
-    var gadgetslistWithHighPrice = [CartItems]()
-    var gadgetslistWithLowPrice = [CartItems]()
+    var gadgetslistWithHighPrice = [GadgetsInfo]()
+    var gadgetslistWithLowPrice = [GadgetsInfo]()
     var spinner = UIActivityIndicatorView(style: .large)
     var gadgetImage = UIImage()
     var gadgetService: GadgetService?
@@ -36,55 +36,11 @@ class HomePageViewController: UITableViewController {
         spinner.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         spinner.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         spinner.startAnimating()
-        
-        let url = URL(string: domainURL)
-        guard let gadgetsUrl = url  else {
-            NSLog("no url found")
-            return
-        }
-        let task = URLSession.shared.dataTask(with: gadgetsUrl) { (data, response, error) in
-            if let err = error {
-                DispatchQueue.main.async {
-                self.errorAlert(message: "Error with fetching gadgets: \(err)")
-                self.spinner.stopAnimating()
-                self.spinner.removeFromSuperview()
-                }
-                return
-            }
-            guard let httpResponse = response as? HTTPURLResponse,
-                  (200...299).contains(httpResponse.statusCode) else {
-                DispatchQueue.main.async {
-                self.errorAlert(message: "Error with the response, unexpected status code: \(String(describing: response))")
-                self.spinner.stopAnimating()
-                self.spinner.removeFromSuperview()
-                }
-                return
-                
-            }
-            if let data = data {
-                let productsList:[String:[GadgetDetails]] = try! JSONDecoder().decode([String: [GadgetDetails]].self, from: data)
-                guard let list = productsList["products"] else {
-                    return
-                }
-                for ele in list {
-                    if (Int(ele.price) ?? 0) > 1000 {
-                        self.gadgetslistWithHighPrice.append(CartItems(gadget: ele))
-                    } else {
-                        self.gadgetslistWithLowPrice.append(CartItems(gadget: ele))
-                    }
-                }
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    self.spinner.stopAnimating()
-                    self.spinner.removeFromSuperview()
-                }
-            }
-        }
-        task.resume()
-        
+        getDataFromApi()
     }
 }
 
+// MARK: tableview delegate data source methods
 extension HomePageViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
@@ -107,7 +63,7 @@ extension HomePageViewController {
             label.text = "Gadgets priced above 1000"
         }
         label.textColor = .black
-        view.backgroundColor = UIColor(red: 135, green: 206, blue: 250, alpha: 1)
+        view.backgroundColor = UIColor(red: 0, green: 191, blue: 255, alpha: 1)
         view.addSubview(label)
         return view
     }
@@ -135,7 +91,7 @@ extension HomePageViewController {
 }
 
 extension HomePageViewController: SelectedItemsDelegate {
-    func itemsSelected(cartData: CartItems, index: IndexPath?) {
+    func itemsSelected(cartData: GadgetsInfo, index: IndexPath?) {
         guard let indexPath = index else {
             return
         }
@@ -154,7 +110,9 @@ extension HomePageViewController: SelectedItemsDelegate {
         }
         tableView.reloadData()
     }
-    
+}
+
+extension HomePageViewController {
     @objc func navigateToCheckout() {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let cartVC = storyBoard.instantiateViewController(withIdentifier: "cartVC") as! CartViewController
@@ -168,4 +126,54 @@ extension HomePageViewController: SelectedItemsDelegate {
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func getDataFromApi() {
+        let url = URL(string: domainURL)
+        guard let gadgetsUrl = url  else {
+            NSLog("no url found")
+            return
+        }
+        let task = URLSession.shared.dataTask(with: gadgetsUrl) { (data, response, error) in
+            if let err = error {
+                DispatchQueue.main.async {
+                    self.errorAlert(message: "Error with fetching gadgets: \(err)")
+                    self.spinner.stopAnimating()
+                    self.spinner.removeFromSuperview()
+                    
+                }
+                return
+            }
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200...299).contains(httpResponse.statusCode) else {
+                DispatchQueue.main.async {
+                    self.errorAlert(message: "Error with the response, unexpected status code: \(String(describing: response))")
+                    self.spinner.stopAnimating()
+                    self.spinner.removeFromSuperview()
+                    
+                }
+                return
+                
+            }
+            if let data = data {
+                let productsList:[String:[GadgetDetails]] = try! JSONDecoder().decode([String: [GadgetDetails]].self, from: data)
+                guard let list = productsList["products"] else {
+                    return
+                }
+                for ele in list {
+                    if (Int(ele.price) ?? 0) > 1000 {
+                        self.gadgetslistWithHighPrice.append(GadgetsInfo(gadget: ele))
+                    } else {
+                        self.gadgetslistWithLowPrice.append(GadgetsInfo(gadget: ele))
+                    }
+                }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.spinner.stopAnimating()
+                    self.spinner.removeFromSuperview()
+                }
+            }
+        }
+        task.resume()
+    }
+    
 }
